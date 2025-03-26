@@ -4,7 +4,7 @@ Welcome to the source code for my personal portfolio – a sleek, responsive, an
 
 ## 📌 Live Demo
 
-**URL**: [(https://sujanp.vercel.app/)](https://sujanp.vercel.app/)]
+**URL**: [Link](https://sujanp.vercel.app/)]
 
 ---
 
