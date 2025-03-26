@@ -26,7 +26,7 @@ Make sure you have **Node.js** and **npm** installed. You can install Node via [
 
 ```bash
 # Step 1: Clone the repository
-git clone <YOUR_GIT_URL>
+git clone <[YOUR_GIT_URL](https://github.com/sujan-026/Portfolio2.O)>
 
 # Step 2: Navigate into the project directory
 cd <YOUR_PROJECT_NAME>
