@@ -4,7 +4,7 @@ Welcome to the source code for my personal portfolio – a sleek, responsive, an
 
 ## 📌 Live Demo
 
-**URL**: [https://lovable.dev/projects/2e807cd0-559f-428b-a66c-7d1f3dafeece](https://lovable.dev/projects/2e807cd0-559f-428b-a66c-7d1f3dafeece)
+**URL**: [Link](https://sujanp.vercel.app/)
 
 ---
 
@@ -26,7 +26,7 @@ Make sure you have **Node.js** and **npm** installed. You can install Node via [
 
 ```bash
 # Step 1: Clone the repository
-git clone <YOUR_GIT_URL>
+git clone https://github.com/sujan-026/Portfolio2.O
 
 # Step 2: Navigate into the project directory
 cd <YOUR_PROJECT_NAME>
@@ -55,7 +55,7 @@ Use GitHub Codespaces for a full in-browser IDE experience. Click `Code > Codesp
 ## 📫 Contact
 
 * 📧 Email: [sujanvarsha86@gmail.com]
-* 🌐 Portfolio: https://lovable.dev/projects/2e807cd0-559f-428b-a66c-7d1f3dafeece
+* 🌐 Portfolio: [Link](https://sujanp.vercel.app/)
 * 💼 LinkedIn: [\[Your LinkedIn\]](https://www.linkedin.com/in/sujan-p-443745244/)
 * 🐙 GitHub: [\[Your GitHub\]](https://github.com/sujan-026)
 
