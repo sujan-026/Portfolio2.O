@@ -4,7 +4,7 @@ Welcome to the source code for my personal portfolio – a sleek, responsive, an
 
 ## 📌 Live Demo
 
-**URL**: [[https://lovable.dev/projects/2e807cd0-559f-428b-a66c-7d1f3dafeece](https://sujanp.vercel.app/)]
+**URL**: [(https://sujanp.vercel.app/)](https://sujanp.vercel.app/)]
 
 ---
 
