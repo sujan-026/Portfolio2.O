@@ -136,10 +136,10 @@ const Hero = () => {
 
   const downloadResume = () => {
     // Replace with your actual resume file path
-    const resumeUrl = "/resume.pdf";
+    const resumeUrl = "../../Sujan P.pdf";
     const link = document.createElement("a");
     link.href = resumeUrl;
-    link.download = "developer_resume.pdf";
+    link.download = "SujanP Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
