@@ -19,12 +19,11 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Country Capital Quiz",
+    title: "Country Capital Quizzer",
     description: "An app to test your geographical knowledge.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-    demoUrl: "#",
-    githubUrl: "https://github.com/sujan-026/World-Country-Quiz",
+    image: "/images/countryQuiz.png",
+    demoUrl: "https://country-capitals-quizzer.vercel.app/",
+    githubUrl: "https://github.com/sujan-026/World-Capital-Quiz",
     technologies: ["EJS", "JavaScript", "CSS", "MonogoDB"],
     category: "web",
   },
@@ -32,8 +31,7 @@ const projects: Project[] = [
     id: 2,
     title: "Pokemon Cards",
     description: "A simple website to browse through all types of pokemons.",
-    image:
-      "https://images.unsplash.com/photo-1507048331197-7d4c42e17426?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/pokemonCard.png",
     demoUrl: "https://pokemon-sigma-weld.vercel.app/",
     githubUrl: "https://github.com/sujan-026/pokemon",
     technologies: ["EJS", "JavaScript", "CSS", "Express"],
@@ -43,11 +41,10 @@ const projects: Project[] = [
     id: 3,
     title: "Earth-Moon Simulation",
     description: "A simple simulator of the earth and its moon",
-    image:
-      "https://images.unsplash.com/photo-1611224885990-ab7363d7f2ed?q=80&w=2039&auto=format&fit=crop",
+    image: "/images/earthAndMoonSim.png",
     demoUrl: "https://earth-moon-model.vercel.app/",
     githubUrl: "https://github.com/sujan-026/Earth-Moon-Model",
-    technologies: ["React", "JavaScript", "HTML", "CSS"],
+    technologies: ["React", "JavaScript", "Three.js", "HTML", "CSS"],
     category: "web",
   },
   {
@@ -55,19 +52,19 @@ const projects: Project[] = [
     title: "Reader Realm",
     description:
       "This platform allows users to explore books and their reviews, create user accounts, and contribute their own reviews. Admins have the special privilege to manage books, reviews, and users with full CRUD operations.",
-    image:
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=2071&auto=format&fit=crop",
+    image: "/images/readerRealm.png",
     demoUrl: "https://reader-realm.vercel.app/",
     githubUrl: "https://github.com/sujan-026/Reader-Realm-",
-    technologies: ["HTML5", "CSS3", "JavaScript"],
+    technologies: ["React.js", "HTML5", "CSS3", "JavaScript"],
     category: "web",
   },
   {
     id: 4,
     title: "Aadi Ecommerce App",
-    description: "A ecommerce of a spares company",
+    description:
+      "During my internship, I developed a dynamic e-commerce platform for a spares company that streamlined inventory management and transformed the customer shopping experience.",
     image:
-      "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=2070&auto=format&fit=crop",
+      "/images/AadiSpares.jpg",
     demoUrl: "#",
     githubUrl: "https://github.com/sujan-026/Aadi-Ecom",
     technologies: ["React Native", "Expo", "TypeScript", "GlueStack-UI"],
@@ -89,8 +86,7 @@ const projects: Project[] = [
     id: 5,
     title: "Sphere Sprint",
     description: "2D platformer made in Unity",
-    image:
-      "https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/sphereSprint.png",
     demoUrl: "https://fury-026.itch.io/sphere-sprinter",
     githubUrl: "#",
     technologies: ["C#", "Unity"],
@@ -101,7 +97,7 @@ const projects: Project[] = [
     title: "Flappy Bird",
     description: "The iconic Flappy Bird game",
     image:
-      "https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=2070&auto=format&fit=crop",
+      "/images/flappyBird.png",
     demoUrl: "https://fury-026.itch.io/flappybird",
     githubUrl: "#",
     technologies: ["C#", "Unity"],

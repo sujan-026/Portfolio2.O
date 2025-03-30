@@ -1,5 +1,5 @@
-import { ChevronDown, Terminal, Code, Zap } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Terminal, Code, Zap, FileText } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const Hero = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -7,7 +7,13 @@ const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const fullText = "Creating digital experiences that matter";
   const [codeVisible, setCodeVisible] = useState(false);
-  
+
+  // Use memo for expensive calculations
+  const getRandomColor = useCallback(() => {
+    const colors = ["text-green-400", "text-primary", "text-accent"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }, []);
+
   useEffect(() => {
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
@@ -19,90 +25,124 @@ const Hero = () => {
         setTimeout(() => setCodeVisible(true), 500);
       }
     }, 100);
-    
+
     return () => clearInterval(typingInterval);
   }, []);
 
+  // Optimized star creation with requestAnimationFrame and reduced DOM manipulation
   useEffect(() => {
+    if (!starsRef.current) return;
+
     const createStars = () => {
       if (!starsRef.current) return;
-      
-      starsRef.current.innerHTML = '';
-      const starCount = 200;
-      
+
+      // Clear stars with a single operation
+      starsRef.current.innerHTML = "";
+
+      // Create a document fragment to batch DOM operations
+      const fragment = document.createDocumentFragment();
+      const starCount = 150; // Reduced from 200
+
+      // Create stars
       for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.classList.add('space-star');
-        
-        const size = Math.random() * 3;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        
-        star.style.setProperty('--twinkle-duration', `${3 + Math.random() * 5}s`);
-        
-        star.style.animationDelay = `${Math.random() * 5}s`;
-        
-        starsRef.current.appendChild(star);
+        const star = document.createElement("div");
+        star.classList.add("space-star");
+
+        const size = Math.random() * 2.5; // Slightly reduced size
+        star.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          --twinkle-duration: ${3 + Math.random() * 5}s;
+          animation-delay: ${Math.random() * 5}s;
+        `;
+
+        fragment.appendChild(star);
       }
-      
-      for (let i = 0; i < 30; i++) {
-        const dust = document.createElement('div');
-        dust.classList.add('cosmic-dust');
-        
-        const size = 20 + Math.random() * 150;
-        dust.style.width = `${size}px`;
-        dust.style.height = `${size}px`;
-        
-        dust.style.left = `${Math.random() * 100}%`;
-        dust.style.top = `${Math.random() * 100}%`;
-        dust.style.opacity = `${Math.random() * 0.3}`;
-        
-        dust.style.animationDuration = `${15 + Math.random() * 30}s`;
-        
-        dust.style.animationDelay = `${Math.random() * -30}s`;
-        
-        starsRef.current.appendChild(dust);
+
+      // Create dust (reduced count)
+      for (let i = 0; i < 20; i++) {
+        // Reduced from 30
+        const dust = document.createElement("div");
+        dust.classList.add("cosmic-dust");
+
+        const size = 20 + Math.random() * 120; // Slightly reduced size
+        dust.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          opacity: ${Math.random() * 0.25};
+          animation-duration: ${15 + Math.random() * 30}s;
+          animation-delay: ${Math.random() * -30}s;
+        `;
+
+        fragment.appendChild(dust);
       }
+
+      // Append all elements at once
+      starsRef.current.appendChild(fragment);
     };
-    
+
     createStars();
-    
+
+    // Throttle mouse movement for better performance
+    let ticking = false;
     const handleMouseMove = (e: MouseEvent) => {
-      if (!parallaxRef.current) return;
-      
-      const x = (window.innerWidth / 2 - e.clientX) / 30;
-      const y = (window.innerHeight / 2 - e.clientY) / 30;
-      
-      const layers = parallaxRef.current.querySelectorAll('.parallax-layer');
-      layers.forEach((layer: Element, index) => {
-        const speed = (index + 1) * 0.3;
-        const htmlLayer = layer as HTMLElement;
-        htmlLayer.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      if (!parallaxRef.current || ticking) return;
+
+      ticking = true;
+      requestAnimationFrame(() => {
+        const x = (window.innerWidth / 2 - e.clientX) / 40; // Reduced sensitivity
+        const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+        const layers = parallaxRef.current.querySelectorAll(".parallax-layer");
+        layers.forEach((layer: Element, index) => {
+          const speed = (index + 1) * 0.2; // Reduced speed
+          const htmlLayer = layer as HTMLElement;
+          htmlLayer.style.transform = `translate(${x * speed}px, ${
+            y * speed
+          }px)`;
+        });
+
+        ticking = false;
       });
     };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', createStars);
-    
+
+    // Debounce resize event
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(createStars, 200);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', createStars);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
   const scrollToProjects = () => {
-    const element = document.getElementById('projects');
+    const element = document.getElementById("projects");
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const getRandomColor = () => {
-    const colors = ['text-green-400', 'text-primary', 'text-accent'];
-    return colors[Math.floor(Math.random() * colors.length)];
+  const downloadResume = () => {
+    // Replace with your actual resume file path
+    const resumeUrl = "/resume.pdf";
+    const link = document.createElement("a");
+    link.href = resumeUrl;
+    link.download = "developer_resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -220,18 +260,17 @@ const Hero = () => {
             <span className="relative z-10">Get In Touch</span>
             <span className="absolute inset-0 bg-primary/10 w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
+
+          <button
+            onClick={downloadResume}
+            className="pixel-button bg-secondary border border-secondary hover:border-accent min-w-[160px] group pixelate-on-hover"
+          >
+            <FileText size={16} className="inline-block mr-2 mb-0.5" />
+            <span className="relative z-10">Resume</span>
+            <span className="absolute inset-0 bg-accent/20 w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+          </button>
         </div>
       </div>
-
-      {/* <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-float z-10">
-        <button 
-          onClick={scrollToProjects} 
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-primary/50 hover:border-accent/80 hover:scale-110 transition-all duration-300 neon-glow pixelate-on-hover"
-          aria-label="Scroll down"
-        >
-          <ChevronDown size={20} className="text-primary animate-bounce" />
-        </button>
-      </div> */}
     </section>
   );
 };
