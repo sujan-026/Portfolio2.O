@@ -1,5 +1,6 @@
 import { ChevronDown, Terminal, Code, Zap, FileText } from "lucide-react";
 import { useEffect, useRef, useState, useCallback } from "react";
+const resumeUrl = "../../Sujan P.pdf";
 
 const Hero = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -135,8 +136,8 @@ const Hero = () => {
   };
 
   const downloadResume = () => {
-    // Replace with your actual resume file path
-    const resumeUrl = "../../Sujan P.pdf";
+    // Ensure the resume file is in the 'public' directory (or root for React apps)
+    const resumeUrl = "/Sujan P.pdf"; // Adjust the path if necessary
     const link = document.createElement("a");
     link.href = resumeUrl;
     link.download = "SujanP Resume.pdf";
