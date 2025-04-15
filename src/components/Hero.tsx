@@ -262,14 +262,14 @@ const Hero = () => {
             <span className="absolute inset-0 bg-primary/10 w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
 
-          <button
+          {/* <button
             onClick={downloadResume}
             className="pixel-button bg-secondary border border-secondary hover:border-accent min-w-[160px] group pixelate-on-hover"
           >
             <FileText size={16} className="inline-block mr-2 mb-0.5" />
             <span className="relative z-10">Resume</span>
             <span className="absolute inset-0 bg-accent/20 w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
